@@ -1,0 +1,1309 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Claim manager - API",
+        "description": "API written by sharu fans club | hosted at http://ec2-52-91-230-198.compute-1.amazonaws.com:8001/api/",
+        "version": "1.0.0"
+    },
+    "host": "localhost",
+    "schemes": [
+        "http"
+    ],
+    "securityDefinitions": {
+        "Bearer": {
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header"
+        }
+    },
+    "basePath": "/api",
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/employees/": {
+            "get": {
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "summary": "Return the employees details",
+                "description": "This endpoint returns the details of all employee in system\n",
+                "tags": [
+                    "Employees"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "An array of employee details",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/employee"
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "summary": "Creates employee",
+                "description": "Creates employee",
+                "tags": [
+                    "Employees"
+                ],
+                "parameters": [
+                    {
+                        "name": "email",
+                        "in": "formData",
+                        "description": "Email id of the user",
+                        "required": true,
+                        "type": "number",
+                        "format": "double"
+                    },
+                    {
+                        "name": "first_name",
+                        "in": "formData",
+                        "description": "Firstname of the user",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "department",
+                        "in": "formData",
+                        "description": "department id",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "role",
+                        "in": "formData",
+                        "description": "Role 1 for manager , 2 for employee",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "username",
+                        "in": "formData",
+                        "description": "User name of the user",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "password",
+                        "in": "formData",
+                        "description": "Password",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "An array of employee details",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/employee"
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/employee/{employee_id}": {
+            "get": {
+                "summary": "Employee instance",
+                "description": "Update delete employee instance\n",
+                "tags": [
+                    "Employees"
+                ],
+                "parameters": [
+                    {
+                        "name": "employee_id",
+                        "in": "path",
+                        "description": "Latitude component of start location.",
+                        "required": true,
+                        "type": "number",
+                        "format": "double"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Employee instance",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/employee"
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "summary": "Employee instance",
+                "description": "Update delete employee instance\n",
+                "tags": [
+                    "Employees"
+                ],
+                "parameters": [
+                    {
+                        "name": "employee_id",
+                        "in": "path",
+                        "description": "Latitude component of start location.",
+                        "required": true,
+                        "type": "number",
+                        "format": "double"
+                    },
+                    {
+                        "name": "first_name",
+                        "in": "formData",
+                        "description": "Firstname of the user",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "last_name",
+                        "in": "formData",
+                        "description": "Last name of the user",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "user_name",
+                        "in": "formData",
+                        "description": "User name of the user",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "email",
+                        "in": "formData",
+                        "description": "Email id of the user",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Employee instance",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/employee"
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Employee instance",
+                "description": "Update delete employee instance\n",
+                "tags": [
+                    "Employees"
+                ],
+                "parameters": [
+                    {
+                        "name": "employee_id",
+                        "in": "path",
+                        "description": "Employee id of the user",
+                        "required": true,
+                        "type": "number",
+                        "format": "double"
+                    },
+                    {
+                        "name": "first_name",
+                        "in": "formData",
+                        "description": "Firstname of the user",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "last_name",
+                        "in": "formData",
+                        "description": "Last name of the user",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "user_name",
+                        "in": "formData",
+                        "description": "User name of the user",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "email",
+                        "in": "formData",
+                        "description": "Email id of the user",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Employee instance",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/employee"
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/employee/map/{employee_id}": {
+            "get": {
+                "summary": "Map employee to a department",
+                "description": "API to Map employee toa department",
+                "parameters": [
+                    {
+                        "name": "employee_id",
+                        "in": "path",
+                        "description": "employee id of the user.",
+                        "required": true,
+                        "type": "number",
+                        "format": "double"
+                    },
+                    {
+                        "name": "department",
+                        "in": "formData",
+                        "description": "Depertment id",
+                        "required": true,
+                        "type": "number",
+                        "format": "double"
+                    },
+                    {
+                        "name": "role",
+                        "in": "formData",
+                        "type": "string",
+                        "description": "Role id"
+                    }
+                ],
+                "tags": [
+                    "Employees"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "An employee instance",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/employee"
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/departements": {
+            "get": {
+                "summary": "List Departments",
+                "description": "API to return available departments",
+                "tags": [
+                    "Departments"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Info about departments",
+                        "schema": {
+                            "$ref": "#/definitions/department"
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/department/{department_id}": {
+            "get": {
+                "summary": "Department instance",
+                "description": "retreive a department",
+                "parameters": [
+                    {
+                        "name": "department_id",
+                        "in": "path",
+                        "description": "Deprtment id of the user",
+                        "required": true,
+                        "type": "number",
+                        "format": "double"
+                    }
+                ],
+                "tags": [
+                    "Departments"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Department info",
+                        "schema": {
+                            "$ref": "#/definitions/department"
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "summary": "Department instance",
+                "description": "update a department",
+                "parameters": [
+                    {
+                        "name": "department_id",
+                        "in": "path",
+                        "description": "Deprtment id",
+                        "required": true,
+                        "type": "number",
+                        "format": "double"
+                    },
+                    {
+                        "name": "name",
+                        "in": "formData",
+                        "description": "name of the department",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "tags": [
+                    "Departments"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Department info",
+                        "schema": {
+                            "$ref": "#/definitions/department"
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Department instance",
+                "description": "deletes a department",
+                "parameters": [
+                    {
+                        "name": "department_id",
+                        "in": "path",
+                        "description": "Deprtment id of the user",
+                        "required": true,
+                        "type": "number",
+                        "format": "double"
+                    }
+                ],
+                "tags": [
+                    "Departments"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Department info"
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/claims/": {
+            "get": {
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "summary": "Return the all claims  details",
+                "description": "This endpoint returns the details of all claims \n",
+                "tags": [
+                    "Claim"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "An array of claim  details",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/claim"
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "summary": "Create a claim",
+                "description": "API to create a claim",
+                "tags": [
+                    "Claim"
+                ],
+                "parameters": [
+                    {
+                        "name": "description",
+                        "in": "formData",
+                        "description": "description  of the claim",
+                        "required": true,
+                        "type": "number",
+                        "format": "double"
+                    },
+                    {
+                        "name": "date",
+                        "in": "formData",
+                        "description": "date of the claim",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "department",
+                        "in": "formData",
+                        "description": "department of the claim",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "image",
+                        "in": "formData",
+                        "description": "Document for the claim -- FILE UPLOAD",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "An array of employee details",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/claim"
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/claim/{claim_id}": {
+            "get": {
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "summary": "Return the all claims  details",
+                "description": "This endpoint returns the details of all claims \n",
+                "parameters": [
+                    {
+                        "name": "claim_id",
+                        "in": "path",
+                        "description": "claim id",
+                        "required": true,
+                        "type": "number",
+                        "format": "float"
+                    }
+                ],
+                "tags": [
+                    "Claim"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "An array of claim  details",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/claim"
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "summary": "Update claim  details",
+                "description": "This endpoint updates the details of all claims \n",
+                "parameters": [
+                    {
+                        "name": "claim_id",
+                        "in": "path",
+                        "description": "claim id",
+                        "required": true,
+                        "type": "number",
+                        "format": "float"
+                    },
+                    {
+                        "name": "description",
+                        "in": "formData",
+                        "description": "description  of the claim",
+                        "required": true,
+                        "type": "number",
+                        "format": "double"
+                    },
+                    {
+                        "name": "date",
+                        "in": "formData",
+                        "description": "date of the claim",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "department",
+                        "in": "formData",
+                        "description": "department of the claim",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "image",
+                        "in": "formData",
+                        "description": "Document for the claim -- FILE UPLOAD",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "tags": [
+                    "Claim"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "An array of claim  details",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/claim"
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "summary": "Deletes a claim",
+                "description": "This endpoint returns the details of all claims \n",
+                "parameters": [
+                    {
+                        "name": "claim_id",
+                        "in": "path",
+                        "description": "claim id",
+                        "required": true,
+                        "type": "number",
+                        "format": "float"
+                    }
+                ],
+                "tags": [
+                    "Claim"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "An array of claim  details",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/claim"
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/claims/approved/": {
+            "get": {
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "summary": "Return the all approved claims  details",
+                "description": "This endpoint returns the details of all approved claims \n",
+                "tags": [
+                    "Claim"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "An array of claim  details",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/claim"
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/claims/rejected/": {
+            "get": {
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "summary": "Return the all approved claims  details",
+                "description": "This endpoint returns the details of all approved claims \n",
+                "tags": [
+                    "Claim"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "An array of claim  details",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/claim"
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/claim/{claim_id}/submit/": {
+            "get": {
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "summary": "Submit a claim for manager approval",
+                "description": "Submit a claim for manager approval\n",
+                "parameters": [
+                    {
+                        "name": "claim_id",
+                        "in": "path",
+                        "description": "claim id",
+                        "required": true,
+                        "type": "number",
+                        "format": "float"
+                    }
+                ],
+                "tags": [
+                    "Claim"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "An array of claim  details",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/claim"
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/claim/{claim_id}/approve/": {
+            "get": {
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "summary": "Approve a claim",
+                "description": "Approve a claim\n",
+                "parameters": [
+                    {
+                        "name": "claim_id",
+                        "in": "path",
+                        "description": "claim id",
+                        "required": true,
+                        "type": "number",
+                        "format": "float"
+                    }
+                ],
+                "tags": [
+                    "Claim"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "An array of claim  details",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/claim"
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "summary": "Approve a claim",
+                "description": "Approve a claim, finance team manager can post amount_approved\n",
+                "parameters": [
+                    {
+                        "name": "claim_id",
+                        "in": "path",
+                        "description": "claim id",
+                        "required": true,
+                        "type": "number",
+                        "format": "float"
+                    },
+                    {
+                        "name": "amount_approved",
+                        "in": "formData",
+                        "description": "Amount approved",
+                        "required": true,
+                        "type": "number",
+                        "format": "float"
+                    }
+                ],
+                "tags": [
+                    "Claim"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "An array of claim  details",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/claim"
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/claim/{claim_id}/reject/": {
+            "get": {
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "summary": "Reject a claim",
+                "description": "Reject a claim\n",
+                "parameters": [
+                    {
+                        "name": "claim_id",
+                        "in": "path",
+                        "description": "claim id",
+                        "required": true,
+                        "type": "number",
+                        "format": "float"
+                    }
+                ],
+                "tags": [
+                    "Claim"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "An array of claim  details",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/claim"
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/requests/": {
+            "get": {
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "summary": "Retreives the requests available in system",
+                "description": "Retreives the requests available in system\n",
+                "tags": [
+                    "Requests"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "An array of requests details",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/request"
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "summary": "Create a resource request",
+                "description": "API to create a request",
+                "tags": [
+                    "Requests"
+                ],
+                "parameters": [
+                    {
+                        "name": "passport",
+                        "in": "formData",
+                        "description": "passport no of the user",
+                        "required": true,
+                        "type": "string",
+                        "format": "double"
+                    },
+                    {
+                        "name": "visa",
+                        "in": "formData",
+                        "description": "user's Visa detail",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "flight_from",
+                        "in": "formData",
+                        "description": "flight from",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "flight_to",
+                        "in": "formData",
+                        "description": "flight to",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "travel_date",
+                        "in": "formData",
+                        "description": "travel date should be in this format YYYY-MM-DD",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "accomodation_at",
+                        "in": "formData",
+                        "description": "Request accomodation",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "insurance_required",
+                        "in": "formData",
+                        "description": "insurance required -  boolean value it should be True or False",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "laptop_short_term",
+                        "in": "formData",
+                        "description": "Request laptop for short term",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "laptop_long_term",
+                        "in": "formData",
+                        "description": "Request laptop for long term",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "forex_details",
+                        "in": "formData",
+                        "description": "Request forex details",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "An array of employee details",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/request"
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/request/{request_id}/reject/": {
+            "get": {
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "summary": "Reject a request, only manager should access",
+                "description": "Reject a request\n",
+                "parameters": [
+                    {
+                        "name": "request_id",
+                        "in": "path",
+                        "description": "request id",
+                        "required": true,
+                        "type": "number",
+                        "format": "float"
+                    }
+                ],
+                "tags": [
+                    "Requests"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success message"
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/request/{request_id}/approve/": {
+            "get": {
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "summary": "Approve a request, only manager should access",
+                "description": "Approve a request\n",
+                "parameters": [
+                    {
+                        "name": "request_id",
+                        "in": "path",
+                        "description": "request id",
+                        "required": true,
+                        "type": "number",
+                        "format": "float"
+                    }
+                ],
+                "tags": [
+                    "Requests"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success message"
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/get-notifications/": {
+            "get": {
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "summary": "Returns notifications",
+                "description": "Returns notifications\n",
+                "tags": [
+                    "Notifications"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success message",
+                        "schema": {
+                            "$ref": "#/definitions/Notification"
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "Notification": {
+            "type": "object",
+            "properties": {
+                "claim": {
+                    "$ref": "#/definitions/claim"
+                },
+                "request": {
+                    "$ref": "#/definitions/request"
+                },
+                "created_at": {
+                    "type": "string",
+                    "description": "created date"
+                },
+                "id": {
+                    "type": "string",
+                    "description": "notification id"
+                }
+            }
+        },
+        "department": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "Depertment id"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Name of teh department"
+                }
+            }
+        },
+        "claim": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "Claim id"
+                },
+                "image": {
+                    "type": "string",
+                    "description": "URL of claim document"
+                },
+                "owner": {
+                    "type": "string",
+                    "description": "Owner of a claims"
+                },
+                "date": {
+                    "type": "string",
+                    "description": "Claim date"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "description of claim"
+                },
+                "state": {
+                    "type": "string",
+                    "description": "state of the claim"
+                }
+            }
+        },
+        "employee": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "Unique identifier representing a specific employee"
+                },
+                "first_name": {
+                    "type": "string",
+                    "description": "Firstname of employee."
+                },
+                "last_name": {
+                    "type": "string",
+                    "description": "last name of employee"
+                },
+                "email": {
+                    "type": "string",
+                    "description": "Email id of the employee"
+                }
+            }
+        },
+        "request": {
+            "type": "object",
+            "properties": {
+                "owner": {
+                    "type": "string",
+                    "description": "Owner of this resource request"
+                },
+                "department": {
+                    "type": "string",
+                    "description": "Department id"
+                },
+                "passport": {
+                    "type": "string",
+                    "description": "passport number"
+                },
+                "visa": {
+                    "type": "string",
+                    "description": "Visa number"
+                },
+                "flight_from": {
+                    "type": "string",
+                    "description": "flight from"
+                },
+                "flight_to": {
+                    "type": "string",
+                    "description": "Flight to"
+                },
+                "travel_date": {
+                    "type": "string",
+                    "description": "travel date"
+                },
+                "accomodation_at": {
+                    "type": "string",
+                    "description": "Request accomodation at"
+                },
+                "insurance_required": {
+                    "type": "string",
+                    "description": "insurance required"
+                },
+                "laptop_short_term": {
+                    "type": "string",
+                    "description": "request laptop for short term"
+                },
+                "laptop_long_term": {
+                    "type": "string",
+                    "description": "request laptop for long term"
+                },
+                "forex_details": {
+                    "type": "string",
+                    "description": "Forex details"
+                },
+                "processed_by": {
+                    "type": "string",
+                    "description": "manager who processed this request"
+                },
+                "state": {
+                    "type": "string",
+                    "description": "state of the request"
+                }
+            }
+        },
+        "Error": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "fields": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}
