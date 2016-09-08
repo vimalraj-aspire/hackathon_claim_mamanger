@@ -13,6 +13,8 @@ from decorators import has_manger_permission
 from department.models import Department
 from notification.models import Notification
 from django.contrib.auth.models import User
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import AllowAny, IsAuthenticated
 
 def get_claims(user):
   '''
@@ -93,6 +95,38 @@ class ClaimDetail(APIView):
         claim = self.get_object(claim_id)
         claim.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+
+@api_view(['POST'])
+@permission_classes((AllowAny, ))
+def do_ocr(request):
+  ''' Function to submit the claim for approval '''
+  import re
+  import datetime
+  try:
+    import Image
+  except ImportError:
+    from PIL import Image
+
+  import sys
+  import pytesseract
+
+  if request.FILES.get('image'):
+    try:
+      OCR_text = pytesseract.image_to_string(Image.open(request.FILES.get('image')))
+      merchant_name_res = re.search(r"([a-zA-Z]{5,})+", OCR_text)
+      merchant_name = merchant_name_res.group(0)
+      amount = OCR_text.split('\n\n')[11].split('\n')[0].split(':')[1].split(' ')[-1]
+      date = datetime.datetime.strptime(OCR_text.split('\n\n')[4].split(' ')[-1], '%d/%b/%Y').strftime('%Y-%m-%d')
+      claim_desc = 'I would like to apply a reimbursement for the amount of Rs - ' + str(amount) + ' spent at ' + merchant_name + ' on ' + str(date)
+
+      return Response({'status': 'success', 'merchant_name': merchant_name, 'amount': amount, 'date': date, 'claim_desc': claim_desc })
+    except:
+      return Response({'status': 'failed', 'msg': 'Sorry, Couldn\'t read the image'})  
+  else:
+    return Response({'status': 'failed', 'msg': 'Image not uploaded properly :('})
+
 
 @api_view(['GET'])
 def submit_claim(request, claim_id):
