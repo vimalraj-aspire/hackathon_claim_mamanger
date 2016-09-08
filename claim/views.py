@@ -135,7 +135,7 @@ def submit_claim(request, claim_id):
   try:
     claim = Claim.objects.get(id=claim_id, owner=request.user, state=settings.CLAIM_STATE.get('DRAFT'))
     claim.state = settings.CLAIM_STATE.get('INTIATED')
-    Notification.objects.create(owner=get_department_manager(get_user_department(self.request.user)), claim=claim)
+    Notification.objects.create(owner=get_department_manager(get_user_department(request.user)), claim=claim)
     claim.save()
     return Response({'status': 'success', 'msg': settings.API_ERRORS.get('CLAIM_INTIATED')})
   except Claim.DoesNotExist:
