@@ -11,7 +11,7 @@ from django.core.cache import cache
 import json
 from claims_manager import settings
 from rest_framework.decorators import api_view, permission_classes
-from rest_framework.permissions import IsAdminUser
+from rest_framework.permissions import IsAdminUser, IsAuthenticated
 from django.utils.decorators import method_decorator
 
 class EmployeeList(APIView):
@@ -101,6 +101,13 @@ class DepartmentDetailView(APIView):
     department = self.get_object(id)
     department.delete()
     return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def my_details(request):
+  serializer = EmployeeSerializer(request.user)
+  return Response(serializer.data)
 
 
 

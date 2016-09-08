@@ -16,7 +16,7 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 
-from .views import EmployeeViewSet, DepartmentViewSet, EmployeeList, DepartmentDetailView, map_employee
+from .views import EmployeeViewSet, DepartmentViewSet, EmployeeList, DepartmentDetailView, map_employee, my_details
 
 
 
@@ -28,6 +28,7 @@ department_list = DepartmentViewSet.as_view({
 
 
 urlpatterns = [
+    url(r'^my-details/$', my_details, name='employee-list'),
     url(r'^employees/$', EmployeeList.as_view(), name='employee-list'),
     url(r'^employee/(?P<id>[0-9]+)/$', EmployeeViewSet.as_view(), name='employee-detail'),
     url(r'^employee/map/(?P<id>[0-9]+)/$', map_employee, name='employee-detail'),
