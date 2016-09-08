@@ -51,6 +51,7 @@ class ClaimList(APIView):
       serializer_context = {
         'request': Request(request),
       }
+      request.POST._mutable = True
       serializer_data = request.data
       serializer_data['owner'] = self.request.user
       serializer_data['department'] = get_user_department(self.request.user)
@@ -145,6 +146,7 @@ def submit_claim(request, claim_id):
 def approve_claim(request, claim_id):
   ''' Approves claim, needs manager permission'''
   try:
+    request.POST._mutable = True
     claim = Claim.objects.get(id=claim_id)
     if settings.DEPARTMENT.get('FINANCE') == claim.department.id:
       if int(request.POST.get('amount_approved',0)): 

@@ -48,6 +48,7 @@ class RequestList(APIView):
         return Response(data=serializer.data, status=status.HTTP_200_OK)
 
     def post(self, request, format=None):
+      request.POST._mutable = True
       serializer_data = request.data
       serializer_data['owner'] = self.request.user
       serializer_data['department'] = get_user_department(self.request.user)

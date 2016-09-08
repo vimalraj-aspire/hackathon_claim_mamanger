@@ -24,6 +24,7 @@ class EmployeeList(APIView):
         return Response(serializer.data)
 
     def post(self, request, format=None):
+        request.POST._mutable = True
         serializer = EmployeeSerializer(data=request.data)
         # Team should have one manager
         if int(request.data.get('role')) == settings.ROLES.get('MANAGER') and EmployeeRole.objects.filter(department= Department.objects.get(pk=request.data.get('department')), role=settings.ROLES.get('MANAGER')):
