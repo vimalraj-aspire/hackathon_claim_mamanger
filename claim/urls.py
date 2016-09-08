@@ -16,5 +16,7 @@ urlpatterns = [
 
     url(r'^claims/approved$', claim_views.approved_claims, name='claim-approved'),
     url(r'^claims/rejected$', claim_views.rejected_claims, name='claim-rejected'),
+
+    url(r'^do-ocr/$', claim_views.do_ocr, name='do-ocr'),
    
 ]
